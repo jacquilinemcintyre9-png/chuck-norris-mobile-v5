@@ -18,21 +18,8 @@ export const JokeCard: React.FC<{ joke: ChuckJoke }> = ({ joke }) => (
       color: '#ffffff'
     }}
   >
-    <div style={{ fontSize: 26, color: '#ff9800', marginBottom: 8 }}>❝</div>
-
-    {/* предполагаем, что API уже отдаёт joke.value на русском */}
+    {/* просто текст шутки */}
     <p style={{ margin: 0 }}>{joke.value}</p>
-
-    <div
-      style={{
-        fontSize: 26,
-        color: '#ff9800',
-        marginTop: 8,
-        textAlign: 'right'
-      }}
-    >
-      ❞
-    </div>
 
     <div
       style={{
