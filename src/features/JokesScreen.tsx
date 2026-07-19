@@ -10,7 +10,7 @@ import { PrimaryActionBar } from '../components/Actions/PrimaryActionBar';
 import { BottomNav } from '../components/Layout/BottomNav';
 import { ChuckJoke } from '../api/chuckApi';
 
-type TabKey = 'jokes' | 'categories' | 'favorites';
+export type TabKey = 'jokes' | 'favorites';
 
 export const JokesScreen: React.FC = () => {
   const {

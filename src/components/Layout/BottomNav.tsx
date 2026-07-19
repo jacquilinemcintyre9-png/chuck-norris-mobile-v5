@@ -1,6 +1,6 @@
 import React from 'react';
 
-type TabKey = 'jokes' | 'categories' | 'favorites';
+export type TabKey = 'jokes' | 'favorites';
 
 interface BottomNavProps {
   active: TabKey;
@@ -10,7 +10,6 @@ interface BottomNavProps {
 export const BottomNav: React.FC<BottomNavProps> = ({ active, onChange }) => {
   const tabs: { key: TabKey; icon: string; label: string }[] = [
     { key: 'jokes', icon: '👊', label: 'Шутки' },
-    { key: 'categories', icon: '📂', label: 'Категории' },
     { key: 'favorites', icon: '⭐', label: 'Избранное' }
   ];
 
