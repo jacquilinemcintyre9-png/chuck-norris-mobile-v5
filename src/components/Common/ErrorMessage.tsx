@@ -1,20 +1,23 @@
-import React from 'react';
+type ErrorMessageProps = {
+  title: string;
+  description: string;
+  onRetry?: () => void;
+};
 
-interface ErrorMessageProps {
-  message: string;
-}
-
-export const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => (
-  <div
-    style={{
-      marginBottom: 12,
-      padding: '10px 12px',
-      borderRadius: 12,
-      background: 'rgba(244, 67, 54, 0.12)',
-      color: '#ffcdd2',
-      fontSize: 14
-    }}
-  >
-    Ошибка: {message}
-  </div>
-);
+export const ErrorMessage = ({
+  title,
+  description,
+  onRetry,
+}: ErrorMessageProps) => {
+  return (
+    <div className="error-card">
+      <h3 className="error-title">{title}</h3>
+      <p className="error-description">{description}</p>
+      {onRetry && (
+        <button className="error-button" onClick={onRetry}>
+          Попробовать снова
+        </button>
+      )}
+    </div>
+  );
+};

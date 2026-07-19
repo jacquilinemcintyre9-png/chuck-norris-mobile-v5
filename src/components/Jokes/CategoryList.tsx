@@ -1,32 +1,18 @@
-import React, { useMemo } from 'react';
-import { ChuckCategory } from '../../api/chuckApi';
-import { CategoryChip } from './CategoryChip';
+type CategoryListProps = {
+  categories?: string[];
+};
 
-interface CategoryListProps {
-  categories: ChuckCategory[];
-  activeCategory: ChuckCategory | null;
-  onSelectCategory: (category: ChuckCategory) => void;
-}
-
-export const CategoryList: React.FC<CategoryListProps> = ({
-  categories,
-  activeCategory,
-  onSelectCategory
-}) => {
-  const sortedCategories = useMemo(
-    () => [...categories].sort(),
-    [categories]
-  );
+export const CategoryList = ({ categories }: CategoryListProps) => {
+  if (!categories || categories.length === 0) {
+    return <p className="category-empty">Категории не найдены.</p>;
+  }
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: 16 }}>
-      {sortedCategories.map((category) => (
-        <CategoryChip
-          key={category}
-          category={category}
-          active={activeCategory === category}
-          onSelect={onSelectCategory}
-        />
+    <div className="category-list">
+      {categories.map((cat) => (
+        <button key={cat} className="category-chip">
+          {cat}
+        </button>
       ))}
     </div>
   );

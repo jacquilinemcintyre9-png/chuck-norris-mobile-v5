@@ -1,11 +1,12 @@
-import React from 'react';
-
-interface LoaderProps {
+type LoaderProps = {
   text?: string;
-}
+};
 
-export const Loader: React.FC<LoaderProps> = ({ text = 'Загрузка...' }) => (
-  <div style={{ marginBottom: 12, fontSize: 14, color: '#b0bec5' }}>
-    <span>{text}</span>
-  </div>
-);
+export const Loader = ({ text = "Загрузка…" }: LoaderProps) => {
+  return (
+    <div className="loader">
+      <div className="loader-spinner" />
+      <span className="loader-text">{text}</span>
+    </div>
+  );
+};
