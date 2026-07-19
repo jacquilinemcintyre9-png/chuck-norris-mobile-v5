@@ -18,7 +18,6 @@ export const JokeCard: React.FC<{ joke: ChuckJoke }> = ({ joke }) => (
       color: '#ffffff'
     }}
   >
-    {/* просто текст шутки */}
     <p style={{ margin: 0 }}>{joke.value}</p>
 
     <div
