@@ -1,24 +1,20 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import path from "path";
+
+let siteConfiguration = {};
+try {
+  siteConfiguration = require("./.figma/make/site.json");
+} catch {
+  siteConfiguration = {};
+}
 
 export default defineConfig({
   plugins: [react()],
-
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "src"),
-    },
-  },
-
   server: {
-    port: 3000,
-    open: true,
+    port: 8443,
+    host: "0.0.0.0",
   },
-
-  build: {
-    outDir: "dist",
-    sourcemap: false,
-    chunkSizeWarningLimit: 600,
-  }
+  define: {
+    __FIGMA_SITE__: JSON.stringify(siteConfiguration),
+  },
 });

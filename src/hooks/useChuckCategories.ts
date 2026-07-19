@@ -1,28 +1,38 @@
-import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from 'react';
+import { chuckApi, ChuckCategory } from '../api/chuckApi';
 
-export type UseChuckCategoriesState = {
-  categories: string[] | undefined;
-  error: unknown;
-  isLoading: boolean;
-};
+interface UseChuckCategoriesState {
+  categories: ChuckCategory[];
+  loading: boolean;
+  error: string | null;
+}
 
-export const useChuckCategories = (): UseChuckCategoriesState => {
-  const { data, error, isLoading } = useQuery({
-    queryKey: ["categories"],
-    queryFn: async () => {
-      const res = await fetch("https://api.chucknorris.io/jokes/categories");
+export function useChuckCategories(): UseChuckCategoriesState {
+  const [categories, setCategories] = useState<ChuckCategory[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-      if (!res.ok) {
-        throw new Error("Ошибка загрузки категорий");
-      }
+  useEffect(() => {
+    let isMounted = true;
 
-      return res.json();
-    },
-  });
+    chuckApi
+      .getCategories()
+      .then((data) => {
+        if (!isMounted) return;
+        setCategories(data);
+        setLoading(false);
+      })
+      .catch((err: Error) => {
+        if (!isMounted) return;
+        console.error(err);
+        setError('Не удалось загрузить категории. Попробуйте позже.');
+        setLoading(false);
+      });
 
-  return {
-    categories: data,
-    error,
-    isLoading,
-  };
-};
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  return { categories, loading, error };
+}
