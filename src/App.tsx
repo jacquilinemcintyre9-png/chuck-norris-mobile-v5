@@ -51,7 +51,6 @@ const PERSONAS = [
   },
 ]
 
-const CATEGORIES = ['Legends', 'Warriors', 'Motivation', 'Comedy', 'Philosophy', 'Action']
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -327,7 +326,6 @@ export default function App() {
   const [personaIdx, setPersonaIdx] = useState(0)
   const [quoteIdx, setQuoteIdx] = useState(0)
   const [liked, setLiked] = useState(false)
-  const [activeCategory, setActiveCategory] = useState('Legends')
   const [btnPressed, setBtnPressed] = useState(false)
   const [imgLoaded, setImgLoaded] = useState(false)
   const [counter, setCounter] = useState(0)
@@ -637,31 +635,7 @@ export default function App() {
           ))}
         </div>
 
-        {/* ── Categories section ── */}
-        <div style={{
-          background: 'rgba(255,255,255,0.03)',
-          backdropFilter: 'blur(18px)',
-          WebkitBackdropFilter: 'blur(18px)',
-          border: '1px solid rgba(255,255,255,0.07)',
-          borderRadius: 20, padding: '16px 14px',
-          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)',
-        }}>
-          <div style={{
-            color: '#fff', fontSize: 11, fontFamily: 'Orbitron, sans-serif',
-            letterSpacing: 2.5, textTransform: 'uppercase', marginBottom: 12,
-          }}>
-            Categories
-          </div>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            {CATEGORIES.map(c => (
-              <CategoryChip
-                key={c} label={c} color={persona.color}
-                active={activeCategory === c}
-                onClick={() => setActiveCategory(c)}
-              />
-            ))}
-          </div>
-        </div>
+ 
 
         {/* spacer */}
         <div style={{ height: 16 }} />
