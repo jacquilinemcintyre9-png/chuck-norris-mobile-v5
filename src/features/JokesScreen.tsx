@@ -22,7 +22,13 @@ export const JokesScreen = () => {
   } = useChuckRandomJoke();
 
   const isLoading = isCategoriesLoading || isJokeLoading;
-  const hasError = categoriesError || jokeError;
+  const hasError = Boolean(categoriesError || jokeError);
+
+  const errorText = (() => {
+    if (categoriesError instanceof Error) return categoriesError.message;
+    if (jokeError instanceof Error) return jokeError.message;
+    return "Неизвестная ошибка";
+  })();
 
   return (
     <div className="screen">
@@ -37,7 +43,7 @@ export const JokesScreen = () => {
         {hasError && (
           <ErrorMessage
             title="Произошла ошибка"
-            description="Не удалось загрузить шутки. Попробуйте ещё раз."
+            description={errorText}
             onRetry={refetch}
           />
         )}

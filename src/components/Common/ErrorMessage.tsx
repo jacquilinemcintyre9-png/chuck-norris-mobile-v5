@@ -4,11 +4,7 @@ type ErrorMessageProps = {
   onRetry?: () => void;
 };
 
-export const ErrorMessage = ({
-  title,
-  description,
-  onRetry,
-}: ErrorMessageProps) => {
+export const ErrorMessage = ({ title, description, onRetry }: ErrorMessageProps) => {
   return (
     <div className="error-card">
       <h3 className="error-title">{title}</h3>
