@@ -151,45 +151,21 @@ function QuoteText({ text, accentColor }: { text: string; accentColor: string })
   }, [text])
 
   return (
-    <div style={{
-      opacity: visible ? 1 : 0,
-      transform: visible ? 'translateY(0)' : 'translateY(10px)',
-      transition: 'opacity 0.45s ease, transform 0.45s ease',
-    }}>
-      {/* Opening quote mark */}
-      <span style={{
-        fontFamily: 'Georgia, serif',
-        fontSize: 48,
-        lineHeight: 0.5,
-        verticalAlign: 'bottom',
-        color: accentColor,
-        filter: `drop-shadow(0 0 8px ${accentColor})`,
-        marginRight: 4,
-        display: 'inline-block',
-        marginBottom: -8,
-      }}>"</span>
-      <span style={{
-        color: 'rgba(255,255,255,0.88)',
-        fontSize: 15,
-        fontFamily: 'Oswald, sans-serif',
-        fontWeight: 300,
-        letterSpacing: 0.6,
-        lineHeight: 1.75,
-      }}>
-        {text}
-      </span>
-      <span style={{
-        fontFamily: 'Georgia, serif',
-        fontSize: 48,
-        lineHeight: 0,
-        verticalAlign: 'top',
-        color: accentColor,
-        filter: `drop-shadow(0 0 8px ${accentColor})`,
-        marginLeft: 4,
-        display: 'inline-block',
-        marginTop: -8,
-      }}>"</span>
-    </div>
+    <div>
+  <span
+    style={{
+      color: 'rgba(255,255,255,0.88)',
+      fontSize: 15,
+      fontFamily: 'Oswald, sans-serif',
+      fontWeight: 300,
+      letterSpacing: 0.6,
+      lineHeight: 1.75,
+    }}
+  >
+    {text}
+  </span>
+</div>
+
   )
 }
 
